@@ -1,12 +1,13 @@
-header {
+.main-container {
   display: block;
   top: 0;
-  width: 100%;
-  height: 80px;
+  width: 100vw;
+  height: 60px;
   max-width: 1920px;
   color: #003da5;
   z-index: 500;
   position: fixed;
+  left: 0;
 }
 
 .container {
@@ -15,7 +16,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 15px 15px 5px;
-  height: 70px;
+  height: 50px;
 }
 
 .contact-container {
@@ -260,12 +261,99 @@ header {
   background-color: #fff;
   border-bottom: 2px solid #d50032;
 }
-
+.mobileHeader {
+  display: none;
+}
 @media (max-width: 768px) {
   .container-items {
     display: none;
   }
   .mobileHeader {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .symbol {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5em;
+    color: #003da5;
+    font-style: normal;
+    justify-content: center;
+    line-height: 1;
+    position: relative;
+    max-width: 100%;
+    cursor: pointer;
+    align-items: center;
+    font-weight: 400;
+  }
+  .menu {
+    padding-top: 5px;
+    font-size: 12px;
+    text-align: center;
+    display: block !important;
+  }
+  .menu-drawer {
+    z-index: 500;
+    background-color: #fff;
+    height: calc(100vh - 68px);
+    position: absolute;
+    top: 80px;
+    width: 100vw;
+
+    transition: transform 0.25s ease-in-out;
+    overflow: hidden;
+  }
+  .scroll-box {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 90px;
+  }
+  .section {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+  }
+  .section-label {
+    padding-top: 5px;
+    background-color: #ededed;
+    border-bottom: 1px solid #c9c9c9;
+  }
+  .label {
+    background-color: #ededed;
+
+    border-bottom: 1px solid #c9c9c9;
+    font: inherit;
+    padding: 15px 22px;
+    font-weight: 600;
+    color: #003da5;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .label a {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    display: inline;
+    font-family: Open Sans, sans-serif;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: inherit;
+    padding: 0;
+    text-align: inherit;
+
+    text-decoration-line: underline;
+    text-transform: none;
+    vertical-align: unset;
+  }
+  .label a:visited {
+    color: #001d4f;
   }
 }

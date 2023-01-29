@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaBars } from "react-icons/fa";
+import { RxCross1 } from "react-icons/rx";
 
 const Header = () => {
   const [hoveredItem, setHoveredItem] = useState("");
@@ -23,7 +24,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <div className="main-container">
         <div className="container">
           <div className="container-items">
             <div className="logo-items-container">
@@ -97,6 +98,26 @@ const Header = () => {
               </ul>
             </div>
           </div>
+          <div className="mobileHeader">
+            {!isOpen ? (
+              <div className="logo">
+                <Link href="/">
+                  <img src="./logo.png" alt="logo" />
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
+            <div className="symbol">
+              {!isOpen ? (
+                <FaBars onClick={() => setIsOpen(!isOpen)} />
+              ) : (
+                <RxCross1 onClick={() => setIsOpen(!isOpen)} />
+              )}
+              <div className="menu">Menu</div>
+            </div>
+          </div>
         </div>
         <div className="top-roofline">
           <div className="mover" style={{ width: cursorPosition.x }}></div>
@@ -114,19 +135,50 @@ const Header = () => {
           <div className="filler"></div>
         </div>
 
-        <div className="mobileHeader">
-          <FaBars
-            size={24}
-            onClick={() => setIsOpen(!isOpen)}
-            className={`hamburger ${isOpen ? "open" : "close"}`}
-          />
-          <nav className={`nav-items ${isOpen ? "show" : "hide"}`}>
-            <a>Home</a>
-            <a>About</a>
-            <a>Contact</a>
-          </nav>
+        <div
+          className="menu-drawer"
+          style={
+            isOpen
+              ? { transform: "translateX(0)" }
+              : { transform: "translateX(-100%)" }
+          }
+        >
+          <div className="scroll-box">
+            <div className="section">
+              <div className="section-label">
+                <div className="label">
+                  <a>Agent's Home</a>
+                </div>
+              </div>
+              <div className="section-label">
+                <div className="label">
+                  <a>My Account</a>
+                </div>
+              </div>
+              <div className="section-label">
+                <div className="label">
+                  <a>About</a>
+                </div>
+              </div>
+              <div className="section-label">
+                <div className="label">
+                  <a>Insurance</a>
+                </div>
+              </div>
+              <div className="section-label">
+                <div className="label">
+                  <a>News</a>
+                </div>
+              </div>
+              <div className="section-label">
+                <div className="label">
+                  <a>Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
+      </div>
     </>
   );
 };
