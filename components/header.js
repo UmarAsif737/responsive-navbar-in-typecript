@@ -2,20 +2,31 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
+import {
+  MdSupportAgent,
+  MdArrowForwardIos,
+  MdArrowBackIos,
+} from "react-icons/md";
+import { GiTeamIdea } from "react-icons/gi";
+import { RiContactsBookFill } from "react-icons/ri";
 
 const Header = () => {
   const [hoveredItem, setHoveredItem] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0 });
   const [isOpen, setIsOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [aboutOpenSub, setAboutOpenSub] = useState(false);
+
   const divRef = useRef(null);
 
   const handleMouseEnter = (e, title) => {
+    if (title !== "about") {
+      setAboutOpen(false);
+    }
     const divPos = e.target.getBoundingClientRect();
     console.log(divPos);
     setHoveredItem(title);
     setCursorPosition({ x: divPos.left + divPos.width / 2 - 25 });
-
-    // Use the position to animate the arrow
   };
   const handleMouseLeave = () => {
     setHoveredItem("");
@@ -51,10 +62,47 @@ const Header = () => {
                   </li>
                   <li
                     ref={divRef}
-                    onMouseEnter={(e) => handleMouseEnter(e, "about")}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={(e) => {
+                      handleMouseEnter(e, "about");
+                      setAboutOpen(true);
+                    }}
+                    className="about"
                   >
                     About
+                    {aboutOpen && (
+                      <ul
+                        className="about-submenu"
+                        onMouseLeave={() => {
+                          handleMouseLeave();
+                          setAboutOpen(false);
+                        }}
+                      >
+                        <li className="inner-list-item">
+                          <a>
+                            <span className="icon-about">
+                              <MdSupportAgent />
+                            </span>
+                            <span>The Agent</span>
+                          </a>
+                        </li>
+                        <li className="inner-list-item">
+                          <a>
+                            <span className="icon-about">
+                              <GiTeamIdea />
+                            </span>
+                            <span>The Team</span>
+                          </a>
+                        </li>
+                        <li className="inner-list-item">
+                          <a>
+                            <span className="icon-about">
+                              <RiContactsBookFill />
+                            </span>
+                            <span>Contact</span>
+                          </a>
+                        </li>
+                      </ul>
+                    )}
                   </li>
                   <li
                     ref={divRef}
@@ -156,8 +204,9 @@ const Header = () => {
                 </div>
               </div>
               <div className="section-label">
-                <div className="label">
-                  <a>About</a>
+                <div className="label" onClick={() => setAboutOpenSub(true)}>
+                  <span>About</span>
+                  <MdArrowForwardIos />
                 </div>
               </div>
               <div className="section-label">
@@ -173,6 +222,44 @@ const Header = () => {
               <div className="section-label">
                 <div className="label">
                   <a>Contact</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="aboutmenu-drawer"
+          style={
+            aboutOpenSub
+              ? { transform: "translateX(0)" }
+              : { transform: "translateX(100%)" }
+          }
+        >
+          <div className="scroll-box">
+            <div className="section">
+              <div className="aboutsection-label">
+                <div
+                  className="labelAbout"
+                  onClick={() => setAboutOpenSub(false)}
+                >
+                  <MdArrowBackIos />
+                  <span>About</span>
+                </div>
+              </div>
+              <div className="aboutsection-label">
+                <div className="labelAboutItems">
+                  <span>The Agent</span>
+                </div>
+              </div>
+
+              <div className="aboutsection-label">
+                <div className="labelAboutItems">
+                  <span>The Team</span>
+                </div>
+              </div>
+              <div className="aboutsection-label">
+                <div className="labelAboutItems">
+                  <span>Contact</span>
                 </div>
               </div>
             </div>

@@ -98,7 +98,7 @@
   flex-grow: 1 !important;
 }
 
-.top-navigation ul {
+.top-navigation .nav-items {
   display: flex;
   justify-content: space-around;
   padding-left: 15px;
@@ -107,14 +107,14 @@
   list-style: none;
 }
 
-.top-navigation ul li {
+.top-navigation .nav-items li {
   position: relative;
   flex-grow: 1;
   text-align: center;
   display: inline-block;
   cursor: pointer;
 }
-.top-navigation ul li:hover,
+.top-navigation .nav-items li:hover,
 .a-standalone:hover {
   text-decoration: underline;
   color: #003da5;
@@ -180,7 +180,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 1365px) {
-  .top-navigation ul {
+  .top-navigation .nav-items {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -198,7 +198,7 @@
   }
 }
 @media (min-width: 1366px) {
-  .top-navigation ul {
+  .top-navigation .nav-items {
     display: flex;
     padding-left: 30px;
     justify-content: space-between;
@@ -211,6 +211,9 @@
     padding-left: 30px;
     justify-content: space-between;
     width: 800px;
+  }
+  .about-submenu {
+    left: -20px;
   }
 }
 
@@ -289,6 +292,7 @@
     align-items: center;
     font-weight: 400;
   }
+
   .menu {
     padding-top: 5px;
     font-size: 12px;
@@ -306,12 +310,24 @@
     transition: transform 0.25s ease-in-out;
     overflow: hidden;
   }
+  .aboutmenu-drawer {
+    z-index: 600;
+    background-color: #fff;
+    height: calc(100vh - 68px);
+    position: absolute;
+    top: 80px;
+    width: 100vw;
+
+    transition: transform 0.25s ease-in-out;
+    overflow: hidden;
+  }
   .scroll-box {
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding-bottom: 90px;
   }
+
   .section {
     position: relative;
     overflow: hidden;
@@ -324,7 +340,6 @@
   }
   .label {
     background-color: #ededed;
-
     border-bottom: 1px solid #c9c9c9;
     font: inherit;
     padding: 15px 22px;
@@ -334,6 +349,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .labelAbout {
+    background-color: #ededed;
+    border-bottom: 1px solid #c9c9c9;
+    font: inherit;
+    padding: 15px 22px;
+    font-weight: 600;
+    color: #003da5;
+    text-decoration: none;
+    font-size: x-large;
+    display: flex;
+  }
+  .labelAboutItems {
+    background-color: #fff;
+    font: inherit;
+    padding: 15px 22px;
+    font-weight: 600;
+    color: #003da5;
+    text-decoration: none;
+  }
+  .aboutsection-label {
+    padding-top: 5px;
+    border-bottom: 1px solid #c9c9c9;
   }
   .label a {
     background: none;
@@ -348,12 +386,90 @@
     line-height: inherit;
     padding: 0;
     text-align: inherit;
-
     text-decoration-line: underline;
+    text-transform: none;
+    vertical-align: unset;
+  }
+  .label span {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    display: inline;
+    font-family: Open Sans, sans-serif;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: inherit;
+    padding: 0;
+    text-align: inherit;
     text-transform: none;
     vertical-align: unset;
   }
   .label a:visited {
     color: #001d4f;
   }
+}
+
+.about-submenu {
+  text-align: left;
+  top: 41px;
+  transition: visibility 0.1s linear 0.25s, opacity 0.1s linear 0.25s !important;
+  position: absolute !important;
+  min-width: 100% !important;
+  padding: 15px 0 0 !important;
+  white-space: nowrap !important;
+  z-index: 0 !important;
+  background: #fff !important;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.about-submenu li {
+  padding-top: 20px;
+  margin-top: -8px;
+
+  background-color: #fff;
+  border-bottom: 1px solid #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+}
+.about-submenu li a {
+  color: #003da5;
+  display: flex;
+  align-items: center;
+  padding: 12px 0px;
+  min-width: 11rem;
+  text-decoration-line: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  font-family: Open Sans, sans-serif;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: inherit;
+
+  text-transform: none;
+}
+
+.about-submenu li a span {
+  padding: 0 10px;
+}
+
+.icon-about {
+  font-size: 24px;
+  height: auto;
+  vertical-align: middle;
+  display: inline-block;
+  color: #707070;
+  width: 45px;
+}
+
+.about-submenu li a:hover {
+  background-color: #ededed;
+}
+.about-submenu li a:hover .icon-about {
+  color: red !important;
 }
