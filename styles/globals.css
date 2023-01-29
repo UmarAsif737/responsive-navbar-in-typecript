@@ -260,3 +260,12 @@ header {
   background-color: #fff;
   border-bottom: 2px solid #d50032;
 }
+
+@media (max-width: 768px) {
+  .container-items {
+    display: none;
+  }
+  .mobileHeader {
+    display: block;
+  }
+}
