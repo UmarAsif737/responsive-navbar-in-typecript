@@ -13,7 +13,7 @@ const Header = () => {
     const divPos = e.target.getBoundingClientRect();
     console.log(divPos);
     setHoveredItem(title);
-    setCursorPosition({ x: divPos.left + divPos.width / 2 - 30 });
+    setCursorPosition({ x: divPos.left + divPos.width / 2 - 25 });
 
     // Use the position to animate the arrow
   };
