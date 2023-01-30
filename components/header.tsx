@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaBars } from "react-icons/fa";
@@ -19,7 +20,7 @@ const Header = () => {
 
   const divRef = useRef(null);
 
-  const handleMouseEnter = (e, title) => {
+  const handleMouseEnter = (e: any, title: string) => {
     if (title !== "about") {
       setAboutOpen(false);
     }
